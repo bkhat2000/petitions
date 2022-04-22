@@ -20,7 +20,7 @@ class TestPetitions(TestCase):
         assert not self.petitions.df_petition.count() == 0
 
     def test_column_counts(self):
-        input_df = self.sc.createDataFrame(
+        expected_df = self.sc.createDataFrame(
             data=[[0,51,13,27],
                 [1,52,16,223],
                 [2,46,12,176],
@@ -43,5 +43,5 @@ class TestPetitions(TestCase):
                 [19,41,12,1164]],
             schema=['petition_id', 'abstract', 'label', 'numberOfSignatures'])
 
-        expected_df = self.petitions.df_petition_count_by_columns
-        self.assertEqual(sorted(input_df.toPandas().to_dict()), sorted(expected_df.toPandas().to_dict()))
+        actual_df = self.petitions.df_petition_count_by_columns
+        self.assertEqual(sorted(actual_df.toPandas().to_dict()), sorted(expected_df.toPandas().to_dict()))
